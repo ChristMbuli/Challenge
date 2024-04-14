@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/e147eaff6b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body class="bg-zinc-800">
+    <div
+      class="h-screen w-full flex flex-col justify-center items-center"
+      id="first-card"
+    >
+      <div
+        class="max-w-lg bg-gradient-to-b from-zinc-700 to-zinc-900 shadow-md rounded-lg overflow-hidden mx-auto"
+      >
+        <div class="py-4 px-8 mt-3">
+          <div class="flex flex-col mb-8">
+            <div
+              class="rounded-full bg-transparent border border-gray-700 w-10"
+            >
+              <i class="fa-solid fa-star p-3"></i>
+            </div>
+
+            <h2 class="text-white font-bold text-2xl tracking-wide mb-2">
+              How did we do ?
+            </h2>
+            <p class="text-gray-500 text-base">
+              Please let us know we did with your support request. All feedback
+              is appreciated to help us improve our offering!
+            </p>
+          </div>
+
+          <div class="py-4 px-4">
+            <div class="flex flex-col">
+              <div
+                class="flex gap-10 text-sm place-content-center text-gray-500"
+              >
+                <button
+                  class="mb-1 p-3 bg-transparent border border-gray-700 rounded-full hover:bg-amber-500 hover:text-white hover:border-none focus:bg-amber-500 number"
+                >
+                  1
+                </button>
+                <button
+                  class="mb-1 p-3 bg-transparent border border-gray-700 bg-gray-100 rounded-full hover:bg-amber-500 hover:text-white hover:border-none focus:bg-amber-500 number"
+                >
+                  2
+                </button>
+                <button
+                  class="mb-1 p-3 bg-transparent border border-gray-700 bg-gray-100 rounded-full hover:bg-amber-500 hover:text-white hover:border-none focus:bg-amber-500 number"
+                >
+                  3
+                </button>
+                <button
+                  class="mb-1 p-3 bg-transparent border border-gray-700 bg-gray-100 rounded-full hover:bg-amber-500 hover:text-white hover:border-none focus:bg-amber-500 number"
+                >
+                  4
+                </button>
+                <button
+                  class="mb-1 p-3 bg-transparent border border-gray-700 bg-gray-100 rounded-full hover:bg-amber-500 hover:text-white hover:border-none focus:bg-amber-500 focus:text-white number"
+                >
+                  5
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="py-4">
+            <button
+              style="margin: auto"
+              class="block tracking-widest font-bold uppercase text-center shadow bg-amber-500 hover:bg-white hover:text-orange-400 focus:shadow-outline focus:outline-none text-white text-xl py-3 px-10 rounded-full"
+              onclick="submitNumber()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Resultat -->
+    <div
+      class="h-screen w-full flex flex-col justify-center items-center hidden"
+      id="result-card"
+    >
+      <div
+        class="max-w-lg bg-gradient-to-b from-zinc-700 to-zinc-900 shadow-md rounded-lg overflow-hidden mx-auto"
+      >
+        <div class="py-4 px-8 mt-3">
+          <div class="flex flex-col mb-8">
+            <div
+              class="rounded-full bg-transparent border border-gray-700 w-10"
+            >
+              <i class="fa-solid fa-arrow-left p-3"></i>
+            </div>
+
+            <div class="image">
+              <img src="./logo.png" width="200" alt="" />
+            </div>
+            <div class="py-4">
+              <p
+                class="font-bold text-center shadow bg-transparent border border-gray-700 focus:shadow-outline focus:outline-none text-orange-400 text-xl py-1 px-1 rounded-full"
+                id="selected-number"
+              >
+                You selected number
+              </p>
+            </div>
+            <h1 class="text-center p-4 text-xl font-bold text-white">
+              Thank You !
+            </h1>
+            <p class="text-gray-500 text-base">
+              We appreciate you taking the time to give a rating. If you ever
+              need more suport, don't hesitate to get in touch !
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialise une variable pour stocker la valeur sélectionnée par l'utilisateur.
+      let selectedValue = null;
+
+      // Définit une fonction appelée lors du clic sur le bouton "Submit".
+      function submitNumber() {
+        // Vérifie si un chiffre a été sélectionné.
+        if (selectedValue !== null) {
+          // Récupère les éléments correspondant aux cards résultat et premier card.
+          const resultCard = document.getElementById("result-card");
+          const firstCard = document.getElementById("first-card");
+          // Récupère l'élément pour afficher le chiffre sélectionné.
+          const selectedNumber = document.getElementById("selected-number");
+          // Met à jour le texte pour afficher le chiffre sélectionné.
+          selectedNumber.textContent = `You selected number ${selectedValue}`;
+          // Affiche le card résultat en supprimant la classe "hidden".
+          resultCard.classList.remove("hidden");
+          // Cache le premier card en ajoutant la classe "hidden".
+          firstCard.classList.add("hidden");
+        } else {
+          // Affiche une alerte si aucun chiffre n'a été sélectionné.
+          alert("Please select a number first.");
+        }
+      }
+
+      // Ajoute un écouteur d'événements pour le chargement du document.
+      document.addEventListener("DOMContentLoaded", function () {
+        // Récupère tous les éléments correspondant aux chiffres sélectionnables.
+        const numbers = document.querySelectorAll(".number");
+
+        // Boucle à travers chaque chiffre sélectionnable.
+        numbers.forEach(function (number) {
+          // Ajoute un écouteur d'événements pour le clic sur chaque chiffre.
+          number.addEventListener("click", function () {
+            // Récupère le texte du chiffre sélectionné et le stocke dans la variable selectedValue.
+            selectedValue = this.textContent;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

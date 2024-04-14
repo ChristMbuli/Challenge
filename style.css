@@ -1,0 +1,16 @@
+i{
+    color: orange;
+}
+
+.image{
+   margin: auto;
+}
+
+.number{
+    cursor: pointer;
+}
+
+.number:focus{
+    background-color: orange;
+    color: white;
+}
