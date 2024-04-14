@@ -92,11 +92,9 @@
       >
         <div class="py-4 px-8 mt-3">
           <div class="flex flex-col mb-8">
-            <div
-              class="rounded-full bg-transparent border border-gray-700 w-10"
-            >
-              <i class="fa-solid fa-arrow-left p-3"></i>
-            </div>
+            <div class="rounded-full bg-transparent border border-gray-700 w-10" onclick="returnToFirstCard()">
+  <i class="fa-solid fa-arrow-left p-3"></i>
+</div>
 
             <div class="image">
               <img src="./logo.png" width="200" alt="" />
@@ -160,6 +158,16 @@
           });
         });
       });
+      function returnToFirstCard() {
+  // Récupère les éléments correspondant aux cards résultat et premier card.
+  const resultCard = document.getElementById("result-card");
+  const firstCard = document.getElementById("first-card");
+
+  // Affiche le premier card en supprimant la classe "hidden".
+  firstCard.classList.remove("hidden");
+  // Cache le card résultat en ajoutant la classe "hidden".
+  resultCard.classList.add("hidden");
+}
     </script>
   </body>
 </html>
